@@ -1,0 +1,21 @@
+services:
+  app:
+    image: scheffer/bifrost-fr:latest
+    container_name: bifrost-fr
+    ports:
+      - "3000:3000"
+      - "2121:2121"
+    environment:
+      BUILD_VERSION: ${VERSION:-latest}
+    healthcheck:
+      test: [ "CMD-SHELL", "pgrep -f bifrost-fr || exit 1" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+        reservations:
+          memory: 128M
