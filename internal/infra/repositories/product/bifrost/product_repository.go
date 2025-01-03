@@ -12,35 +12,35 @@ import (
 
 // ProductRepository define os métodos para interagir com a coleção de produtos.
 type ProductRepository interface {
-	// InsertProduct insere um novo produto no banco de dados.
-	// Recebe um contexto e os dados do produto como parâmetros.
-	// Retorna o ID do produto inserido ou um erro, caso ocorra.
-	InsertProduct(ctx context.Context, product interface{}) (interface{}, error)
+	// Insert insere um novo registro no banco de dados.
+	// Recebe um contexto e os dados do registro como parâmetros.
+	// Retorna o ID do registro inserido ou um erro, caso ocorra.
+	Insert(ctx context.Context, data interface{}) (interface{}, error)
 
-	// GetProduct busca um produto pelo seu id.
-	// Recebe um contexto e o id do produto como parâmetros.
-	// Retorna os dados do produto encontrado ou um erro, caso ocorra.
-	GetProduct(ctx context.Context, id int, system string) (interface{}, error)
+	// Get busca um registro pelo seu identificador.
+	// Recebe um contexto e o identificador do registro como parâmetros.
+	// Retorna os dados do registro encontrado ou um erro, caso ocorra.
+	Get(ctx context.Context, identifier int, system string) (interface{}, error)
 
-	// GetAllProducts retorna todos os produtos na coleção.
+	// GetAll retorna todos os registros na coleção.
 	// Recebe um contexto como parâmetro.
-	// Retorna uma lista de produtos ou um erro, caso ocorra.
-	GetAllProducts(ctx context.Context) ([]interface{}, error)
+	// Retorna uma lista de registros ou um erro, caso ocorra.
+	GetAll(ctx context.Context) ([]interface{}, error)
 
-	// GetProductBySystem busca produtos pelo campo "system".
+	// GetBySystem busca registros pelo campo "system".
 	// Recebe um contexto e o valor de "system" como parâmetros.
-	// Retorna uma lista de produtos ou um erro, caso ocorra.
-	GetProductBySystem(ctx context.Context, system string) ([]interface{}, error)
+	// Retorna uma lista de registros ou um erro, caso ocorra.
+	GetBySystem(ctx context.Context, system string) ([]interface{}, error)
 
-	// UpdateProduct atualiza os dados de um produto existente.
-	// Recebe um contexto, o id do produto e os dados a serem atualizados como parâmetros.
+	// Update atualiza os dados de um registro existente.
+	// Recebe um contexto, o identifier do registro e os dados a serem atualizados como parâmetros.
 	// Retorna um erro, caso ocorra.
-	UpdateProduct(ctx context.Context, id int, updateData interface{}) error
+	Update(ctx context.Context, id int, updateData interface{}) error
 
-	// DeleteProduct remove um produto do banco de dados.
-	// Recebe um contexto e o id do produto como parâmetros.
+	// Delete remove um registro do banco de dados.
+	// Recebe um contexto e o identifier do registro como parâmetros.
 	// Retorna um erro, caso ocorra.
-	DeleteProduct(ctx context.Context, id int) error
+	Delete(ctx context.Context, id int) error
 }
 
 type productRepository struct {
@@ -60,13 +60,13 @@ func NewProductRepository(client *mongo.Client) (ProductRepository, error) {
 	}, nil
 }
 
-// InsertProduct insere um novo produto no banco de dados.
-func (r *productRepository) InsertProduct(ctx context.Context, product interface{}) (interface{}, error) {
+// Insert insere um novo registro no banco de dados.
+func (r *productRepository) Insert(ctx context.Context, data interface{}) (interface{}, error) {
 	return nil, nil
 }
 
-// GetProduct busca um produto pelo seu ID.
-func (r *productRepository) GetProduct(ctx context.Context, id int, system string) (interface{}, error) {
+// Get busca um registro pelo seu identifier.
+func (r *productRepository) Get(ctx context.Context, id int, system string) (interface{}, error) {
 
 	filter := bson.D{
 		{Key: "id", Value: id},
@@ -87,22 +87,22 @@ func (r *productRepository) GetProduct(ctx context.Context, id int, system strin
 	return nil, nil
 }
 
-// GetAllProducts retorna todos os produtos na coleção.
-func (r *productRepository) GetAllProducts(ctx context.Context) ([]interface{}, error) {
+// GetAll retorna todos os registros na coleção.
+func (r *productRepository) GetAll(ctx context.Context) ([]interface{}, error) {
 	return nil, nil
 }
 
-// GetProductBySystem busca produtos pelo campo "system".
-func (r *productRepository) GetProductBySystem(ctx context.Context, system string) ([]interface{}, error) {
+// GetBySystem busca registros pelo campo "system".
+func (r *productRepository) GetBySystem(ctx context.Context, system string) ([]interface{}, error) {
 	return nil, nil
 }
 
-// UpdateProduct atualiza os dados de um produto existente.
-func (r *productRepository) UpdateProduct(ctx context.Context, id int, updateData interface{}) error {
+// Update atualiza os dados de um registro existente.
+func (r *productRepository) Update(ctx context.Context, id int, updateData interface{}) error {
 	return nil
 }
 
-// DeleteProduct remove um produto do banco de dados.
-func (r *productRepository) DeleteProduct(ctx context.Context, id int) error {
+// Delete remove um registro do banco de dados.
+func (r *productRepository) Delete(ctx context.Context, id int) error {
 	return nil
 }

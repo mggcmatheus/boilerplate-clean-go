@@ -1,8 +1,7 @@
 package hub
 
 import (
-	domain "bifrost/internal/domain/entities"
-	"bifrost/internal/infra/config"
+	domain "bifrost-fr/internal/domain/entities"
 	"context"
 	"database/sql"
 )
@@ -41,8 +40,7 @@ type ProductRepository interface {
 }
 
 type productRepository struct {
-	db     *sql.DB
-	logger domain.Logger
+	db *sql.DB
 }
 
 // NewProductRepository cria uma instância de repositório de produtos.
@@ -58,8 +56,7 @@ func NewProductRepository(cfg config.HubConfig, logger domain.Logger) (ProductRe
 	}
 
 	return &productRepository{
-		db:     db,
-		logger: logger,
+		db: db,
 	}, nil
 }
 

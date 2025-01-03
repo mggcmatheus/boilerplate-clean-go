@@ -1,8 +1,6 @@
 package hub
 
 import (
-	domain "bifrost/internal/domain/entities"
-	"bifrost/internal/infra/config"
 	"context"
 	"database/sql"
 )
@@ -41,25 +39,17 @@ type ProviderRepository interface {
 }
 
 type providerRepository struct {
-	db     *sql.DB
-	logger domain.Logger
+	db *sql.DB
 }
 
 // NewProviderRepository cria uma instância de repositório de fornecedores.
 // Recebe uma configuração de conexão com Mysql e um logger como parâmetros.
 // Retorna uma instância de ProviderRepository ou um erro, caso ocorra.
-func NewProviderRepository(cfg config.HubConfig, logger domain.Logger) (ProviderRepository, error) {
-	db, err := config.GetMySQLConnection(cfg.ConnectionString)
-	if err != nil {
-		logger.WithFields(domain.LogFormat{
-			Error: err,
-		}).Error("erro ao obter conexão mysql no repositório customer")
-		return nil, err
-	}
+func NewProviderRepository(db *sql.DB) (ProviderRepository, error) {
 
+	// Retorna o repositório inicializada.
 	return &providerRepository{
-		db:     db,
-		logger: logger,
+		db: db,
 	}, nil
 }
 

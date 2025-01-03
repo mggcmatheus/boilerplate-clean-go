@@ -1,12 +1,12 @@
-package sapiens
+package hub
 
 import (
 	"context"
 	"database/sql"
 )
 
-// CustomerRepository define os métodos para interagir com a coleção de clientes.
-type CustomerRepository interface {
+// TransporterRepository define os métodos para interagir com a coleção de clientes.
+type TransporterRepository interface {
 	// Insert insere um novo registro no banco de dados.
 	// Recebe um contexto e os dados do registro como parâmetros.
 	// Retorna o ID do registro inserido ou um erro, caso ocorra.
@@ -38,47 +38,45 @@ type CustomerRepository interface {
 	Delete(ctx context.Context, identifier string) error
 }
 
-type customerRepository struct {
+type transporterRepository struct {
 	db *sql.DB
 }
 
-// NewCustomerRepository cria uma instância de repositório de clientes.
-// Recebe uma configuração de conexão com Oracle e um logger como parâmetros.
-// Retorna uma instância de CustomerRepository ou um erro, caso ocorra.
-func NewCustomerRepository(db *sql.DB) (CustomerRepository, error) {
+// NewTransporterRepository cria uma instância de repositório de clientes.
+func NewTransporterRepository(db *sql.DB) (TransporterRepository, error) {
 
 	// Retorna o repositório inicializada.
-	return &customerRepository{
+	return &transporterRepository{
 		db: db,
 	}, nil
 }
 
-// Insert insere um novo cliente no banco de dados.
-func (r *customerRepository) Insert(ctx context.Context, data interface{}) (interface{}, error) {
+// Insert insere um novo registro no banco de dados.
+func (r *transporterRepository) Insert(ctx context.Context, data interface{}) (interface{}, error) {
 	return nil, nil
 }
 
-// Get busca um cliente pelo seu identifier.
-func (r *customerRepository) Get(ctx context.Context, identifier, system string) (interface{}, error) {
+// Get busca um registro pelo seu identifier.
+func (r *transporterRepository) Get(ctx context.Context, identifier, system string) (interface{}, error) {
 	return nil, nil
 }
 
-// GetAll retorna todos os clientes na coleção.
-func (r *customerRepository) GetAll(ctx context.Context) ([]interface{}, error) {
+// GetAll retorna todos os registros na coleção.
+func (r *transporterRepository) GetAll(ctx context.Context) ([]interface{}, error) {
 	return nil, nil
 }
 
-// GetBySystem busca clientes pelo campo "system".
-func (r *customerRepository) GetBySystem(ctx context.Context, system string) ([]interface{}, error) {
+// GetBySystem busca registros pelo campo "system".
+func (r *transporterRepository) GetBySystem(ctx context.Context, system string) ([]interface{}, error) {
 	return nil, nil
 }
 
-// Update atualiza os dados de um cliente existente.
-func (r *customerRepository) Update(ctx context.Context, identifier string, updateData interface{}) error {
+// Update atualiza os dados de um registro existente.
+func (r *transporterRepository) Update(ctx context.Context, identifier string, updateData interface{}) error {
 	return nil
 }
 
-// Delete remove um cliente do banco de dados.
-func (r *customerRepository) Delete(ctx context.Context, identifier string) error {
+// Delete remove um registro do banco de dados.
+func (r *transporterRepository) Delete(ctx context.Context, identifier string) error {
 	return nil
 }

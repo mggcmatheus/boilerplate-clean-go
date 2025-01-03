@@ -1,17 +1,15 @@
 package hub
 
 import (
-	domain "bifrost/internal/domain/entities"
-	"bifrost/internal/infra/config"
 	"context"
 	"database/sql"
 )
 
-// CustomerRepository define os métodos para interagir com a coleção de clientes.
+// CustomerRepository define os métodos para interagir com os clientes no HUB.
 type CustomerRepository interface {
 	// InsertCustomer insere um novo cliente no banco de dados.
 	// Recebe um contexto e os dados do cliente como parâmetros.
-	// Retorna o identifier do cliente inserido ou um erro, caso ocorra.
+	// Retorna o ID do cliente inserido ou um erro, caso ocorra.
 	InsertCustomer(ctx context.Context, customer interface{}) (interface{}, error)
 
 	// GetCustomer busca um cliente pelo seu identificador.
@@ -41,22 +39,13 @@ type CustomerRepository interface {
 }
 
 type customerRepository struct {
-	db     *sql.DB
-	logger domain.Logger
+	db *sql.DB
 }
 
-func NewCustomerRepository(cfg config.HubConfig, logger domain.Logger) (CustomerRepository, error) {
-	db, err := config.GetMySQLConnection(cfg.ConnectionString)
-	if err != nil {
-		logger.WithFields(domain.LogFormat{
-			Error: err,
-		}).Error("erro ao obter conexão mysql no repositório customer")
-		return nil, err
-	}
+func NewCustomerRepository(db *sql.DB) (CustomerRepository, error) {
 
 	return &customerRepository{
-		db:     db,
-		logger: logger,
+		db: db,
 	}, nil
 }
 
