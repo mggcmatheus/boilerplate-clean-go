@@ -1,4 +1,4 @@
-package postgresql
+package databases
 
 import (
 	"bifrost-fr/pkg/logger"

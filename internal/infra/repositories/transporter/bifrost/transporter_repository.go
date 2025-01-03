@@ -53,7 +53,7 @@ type transporterRepository struct {
 func NewTransporterRepository(client *mongo.Client) (TransporterRepository, error) {
 
 	// Obtém a coleção especificada do banco de dados configurado.
-	collection := client.Database("bifrost").Collection("transporter")
+	collection := client.Database("bifrost").Collection("transporters")
 
 	// Retorna o repositório com a coleção já inicializada.
 	return &transporterRepository{

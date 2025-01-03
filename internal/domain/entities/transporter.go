@@ -3,11 +3,12 @@ package entities
 import "github.com/google/uuid"
 
 type Transporter struct {
-	Uuid    uuid.UUID          `json:"uuid"`
-	Sapiens TransporterSapiens `bson:"sapiens"`
-	Gatec   TransporterGatec   `bson:"gatec"`
-	VetoRH  TransporterVetoRH  `bson:"vetorh"`
-	Hub     TransporterHub     `bson:"hub"`
+	Uuid       uuid.UUID          `json:"uuid"`
+	Identifier string             `bson:"identifier"`
+	Sapiens    TransporterSapiens `bson:"sapiens"`
+	Gatec      TransporterGatec   `bson:"gatec"`
+	VetoRH     TransporterVetoRH  `bson:"vetorh"`
+	Hub        TransporterHub     `bson:"hub"`
 }
 
 type TransporterSapiens struct {
